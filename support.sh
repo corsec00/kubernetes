@@ -24,6 +24,8 @@ systemctl start ssh
 # Configura o firewall
 ufw allow OpenSSH
 ufw allow 22/tcp
+ufw allow 80/tcp
+ufw allow 8080/tcp
 ufw enable
 
 # Limpa o cache do apt
@@ -33,6 +35,7 @@ apt-get clean
 read -p "Digite o novo hostname: " new_hostname
 hostnamectl set-hostname $new_hostname
 echo "Hostname alterado para $new_hostname"
+
 # Reinicia o sistema
 reboot
 

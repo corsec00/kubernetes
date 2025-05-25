@@ -1,0 +1,19 @@
+#cria um yaml para o pod do nginx
+apiVersion: v1 
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  containers:
+    - name: nginx
+      image: nginx:latest
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: nginx-volume
+          mountPath: /usr/share/nginx/html
+  volumes:
+    - name: nginx-volume
+      emptyDir: {}

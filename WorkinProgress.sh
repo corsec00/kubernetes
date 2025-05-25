@@ -1,41 +1,4 @@
-# No CP, após configurar os nós
-kubectl get nodes
-kubectl get pods -A
 
-
-# Instalação do Tigera Calico
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/tigera-operator.yaml
-# ou kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
-
-# Altere o CIDR  (ver linha 70)
-curl https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/custom-resources.yaml -O
-
-nano custom-resources.yaml
-
-kubectl create -f custom-resources.yaml
-# on error, kubectl delete -f custom-resources.yaml e refaça
-# kubectl delete -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/tigera-operator.yaml
-# TS
-kubectl describe pod calico-node -n calico-system
-kubectl describe pode (nome) -n (namespace)
-#Instalar os plugins do KubeCTL 
-sudo apt-get install bash-completion
-source /usr/share/bash-completion/bash_completion
-echo 'source <(kubectl completion bash)' >>~/.bashrc
-echo 'alias k=kubectl' >>~/.bashrc
-echo 'complete -o default -F __start_kubectl k' >>~/.bashrc
-source ~/.bashrc
-source /etc/profile.d/bash_completion.sh
-
-# Modo não privilegiado
-kubectl api-versions
-kubectl proxy --port=8080 # não sai
-kubectl api-resources
-
-#Alterar o Kubernet API para habilitar o swagger
-kubectl create ns teste # criando um namespace
-kubectl get ns
-# kubectl delete ns teste
 # Podnginx.yaml
 # ----------------------------
 kubectl create -f podnginx.yaml
